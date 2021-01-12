@@ -1,22 +1,31 @@
 <template>
-  <todos-shell />
-  <footer class="info">
-    <p>Double-click to edit a todo</p>
-    <!-- Remove the below line ↓ -->
-    <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
-    <!-- Change this out with your name and url ↓ -->
-    <p>Created by <a href="http://todomvc.com">you</a></p>
-    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-  </footer>
+  <div id="nav">
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link> |
+    <router-link to="/todos">Todos</router-link>
+  </div>
+  <router-view/>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import TodosShell from "./components/TodosShell.vue";
+<style>
+#nav {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-export default defineComponent({
-  components: { TodosShell },
-  name: "App",
-});
-</script>
+#nav {
+  padding: 30px;
+}
 
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
