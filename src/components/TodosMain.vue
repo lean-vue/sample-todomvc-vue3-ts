@@ -7,6 +7,7 @@
       <todos-item 
         v-for="t in todos" :key="t.id"
         :todo="t"
+        @toggle="$emit('toggle', t.id)"
       />
     </ul>
   </section>

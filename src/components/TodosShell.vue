@@ -4,7 +4,9 @@
       <h1>todos</h1>
       <todos-input @create="createTodo" />
     </header>
-    <todos-main :todos="todos"/>
+    <todos-main :todos="todos"
+      @toggle="toggleTodo"
+    />
     <todos-actionbar />
   </section>
 </template>
@@ -31,6 +33,11 @@ export default defineComponent<{},{},{ todos: Todo[] }>({
     async createTodo(title: string) {
       const todo = await store.create(title);
       this.todos.push(todo);
+    },
+    async toggleTodo(id: number) {
+      const todo = this.todos.find(t => t.id === id) as Todo;
+      await store.update(id, { completed: !todo.completed });
+      todo.completed = !todo.completed;
     }
   },
 
