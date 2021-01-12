@@ -1,13 +1,12 @@
 <template>
   <!-- This section should be hidden by default and shown when there are todos -->
   <section class="main">
-    <input id="toggle-all" class="toggle-all" type="checkbox" />
+    <input :checked="allDone" id="toggle-all" class="toggle-all" type="checkbox" />
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
       <todos-item 
         v-for="t in todos" :key="t.id"
         :todo="t"
-        @toggle="$emit('toggle', t.id)"
       />
     </ul>
   </section>
@@ -17,6 +16,7 @@
 import TodosItem from './TodosItem.vue';
 import { Todo } from '@/model/todo.interface';
 import { PropType } from 'vue';
+import { mapGetters } from 'vuex';
 
 export default {
   components: { TodosItem },
@@ -26,6 +26,10 @@ export default {
       type: Object as PropType<Todo[]>,
       required: true
     }
+  },
+
+  computed: {
+    ...mapGetters(['allDone'])
   }
 };
 </script>

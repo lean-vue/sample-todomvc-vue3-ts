@@ -7,10 +7,10 @@
         class="toggle"
         type="checkbox"
         :checked="todo.completed"
-        @change="handleToggle"
+        @change="toggleTodo(todo.id)"
       />
       <label>{{ todo.title }}</label>
-      <button class="destroy"></button>
+      <button @click="destroyTodo(todo.id)" class="destroy"></button>
     </div>
     <input class="edit" value="Create a TodoMVC template" />
   </li>
@@ -19,6 +19,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { Todo } from "@/model/todo.interface";
+import { mapActions } from "vuex";
 
 export default defineComponent({
   props: {
@@ -27,11 +28,8 @@ export default defineComponent({
       required: true,
     },
   },
-
   methods: {
-    handleToggle() {
-      this.$emit("toggle");
-    },
+    ...mapActions(['toggleTodo', 'destroyTodo'])
   },
 });
 </script>
