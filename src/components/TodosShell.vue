@@ -2,6 +2,7 @@
   <section class="todoapp">
     <header class="header">
       <h1>todos</h1>
+      <h2 v-if="errorMsg">{{ errorMsg }}</h2>
       <todos-input @create="createTodo" />
     </header>
     <todos-main :todos="todos"
@@ -16,16 +17,17 @@ import TodosActionbar from './TodosActionbar.vue'
 import TodosInput from './TodosInput.vue'
 import TodosMain from './TodosMain.vue'
 import { Todo } from '@/model/todo.interface';
-import { defineComponent } from 'vue';
+import { defineComponent, onErrorCaptured } from 'vue';
 
-import store from '@/model/local.store';
+import store from '@/model/http.store';
 
-export default defineComponent<{},{},{ todos: Todo[] }>({
+export default defineComponent<{},{},{ todos: Todo[]; errorMsg: string }>({
   components: { TodosInput, TodosMain, TodosActionbar },
 
   data() {
     return {
-      todos: []
+      todos: [],
+      errorMsg: ''
     }
   },
 
@@ -42,8 +44,13 @@ export default defineComponent<{},{},{ todos: Todo[] }>({
   },
 
   async mounted() {
-    this.todos = await store.getAll();
-  }
+    try {
+      this.todos = await store.getAll();
+    } catch (error) {
+      this.errorMsg = error.message;
+    }
+  },
+
 });
 </script>
 
