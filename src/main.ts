@@ -4,4 +4,6 @@ import App from './App.vue'
 // Import Styles
 import 'todomvc-app-css/index.css';
 
-createApp(App).mount('#app')
+import store from './store'
+
+createApp(App).use(store).mount('#app')

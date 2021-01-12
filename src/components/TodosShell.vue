@@ -17,7 +17,7 @@ import TodosActionbar from './TodosActionbar.vue'
 import TodosInput from './TodosInput.vue'
 import TodosMain from './TodosMain.vue'
 import { Todo } from '@/model/todo.interface';
-import { defineComponent, onErrorCaptured } from 'vue';
+import { defineComponent } from 'vue';
 
 import store from '@/model/http.store';
 
