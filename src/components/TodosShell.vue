@@ -13,11 +13,24 @@
 import TodosActionbar from './TodosActionbar.vue'
 import TodosInput from './TodosInput.vue'
 import TodosMain from './TodosMain.vue'
+import { Todo } from '@/model/todo.interface';
+import { defineComponent } from 'vue';
 
-export default {
+import store from '@/model/local.store';
+
+export default defineComponent<{},{},{ todos: Todo[] }>({
   components: { TodosInput, TodosMain, TodosActionbar },
 
-}
+  data() {
+    return {
+      todos: []
+    }
+  },
+
+  async mounted() {
+    this.todos = await store.getAll();
+  }
+});
 </script>
 
 <style>
