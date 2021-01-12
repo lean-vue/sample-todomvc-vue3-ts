@@ -9,6 +9,7 @@
     "restdb": "json-server --watch db.json"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "todomvc-app-css": "^2.3.0",
     "vue": "^3.0.0"
   },

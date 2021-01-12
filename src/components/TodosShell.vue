@@ -43,7 +43,7 @@ export default defineComponent<{},{},{ todos: Todo[]; errorMsg: string }>({
     }
   },
 
-  async mounted() {
+  async created() {
     try {
       this.todos = await store.getAll();
     } catch (error) {
