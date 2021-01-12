@@ -2,7 +2,7 @@
   <section class="todoapp">
     <header class="header">
       <h1>todos</h1>
-      <todos-input />
+      <todos-input @create="createTodo" />
     </header>
     <todos-main :todos="todos"/>
     <todos-actionbar />
@@ -24,6 +24,13 @@ export default defineComponent<{},{},{ todos: Todo[] }>({
   data() {
     return {
       todos: []
+    }
+  },
+
+  methods: {
+    async createTodo(title: string) {
+      const todo = await store.create(title);
+      this.todos.push(todo);
     }
   },
 
