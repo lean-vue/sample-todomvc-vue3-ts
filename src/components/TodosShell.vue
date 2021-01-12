@@ -4,7 +4,7 @@
       <h1>todos</h1>
       <todos-input />
     </header>
-    <todos-main />
+    <todos-main :todos="todos"/>
     <todos-actionbar />
   </section>
 </template>

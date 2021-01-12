@@ -4,15 +4,28 @@
     <input id="toggle-all" class="toggle-all" type="checkbox" />
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-      <todos-item />
+      <todos-item 
+        v-for="t in todos" :key="t.id"
+      />
     </ul>
   </section>
 </template>
 
 <script lang="ts">
 import TodosItem from './TodosItem.vue';
+import { Todo } from '@/model/todo.interface';
+import { PropType } from 'vue';
+
 export default {
-  components: { TodosItem },};
+  components: { TodosItem },
+
+  props: {
+    todos: {
+      type: Object as PropType<Todo[]>,
+      required: true
+    }
+  }
+};
 </script>
 
 <style>
